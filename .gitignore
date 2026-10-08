@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.system_generated/
+*.pdf
+*.docx
+*.doc
+build_dashboard.py
+build_comprehensive_dashboard.py
+build_human_dashboard.py
+build_human_story_dashboard.py
+build_clean_academic_dashboard.py

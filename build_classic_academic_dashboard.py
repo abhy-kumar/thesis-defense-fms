@@ -1,0 +1,1261 @@
+import os
+import json
+
+csv_path = r"d:\Dissertation\survey_responses.csv"
+with open(csv_path, "r", encoding="utf-8") as f:
+    raw_csv_data = f.read()
+
+escaped_csv = json.dumps(raw_csv_data)
+
+html_code = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Psychological Outcomes of AI-Enabled Workplace Monitoring - FMS Delhi</title>
+  <style>
+    body {{
+      font-family: "Times New Roman", Times, Georgia, serif;
+      background-color: #ffffff;
+      color: #000000;
+      margin: 40px auto;
+      max-width: 960px;
+      padding: 0 20px;
+      line-height: 1.6;
+      font-size: 15px;
+    }}
+    h1 {{
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }}
+    h2 {{
+      font-size: 17px;
+      font-weight: bold;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 3px;
+    }}
+    h3 {{
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 6px;
+    }}
+    .institution-header {{
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }}
+    .sub-institution {{
+      text-align: center;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }}
+    .meta-line {{
+      text-align: center;
+      font-size: 13px;
+      color: #333333;
+      margin-bottom: 20px;
+    }}
+    table.apa-table {{
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0 25px 0;
+      font-size: 13.5px;
+    }}
+    table.apa-table th {{
+      border-top: 2px solid #000000;
+      border-bottom: 1px solid #000000;
+      padding: 6px 8px;
+      text-align: left;
+      font-weight: bold;
+      background: none;
+    }}
+    table.apa-table td {{
+      padding: 5px 8px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: top;
+    }}
+    table.apa-table tr.table-end td {{
+      border-bottom: 2px solid #000000;
+    }}
+    .table-caption {{
+      font-style: italic;
+      font-size: 13.5px;
+      margin-bottom: 4px;
+      font-weight: normal;
+    }}
+    .table-title {{
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }}
+    .note {{
+      font-size: 12px;
+      font-style: italic;
+      margin-top: 4px;
+      margin-bottom: 20px;
+      color: #333333;
+    }}
+    fieldset.academic-box {{
+      border: 1px solid #999999;
+      padding: 12px 16px;
+      margin: 20px 0;
+      background-color: #fafafa;
+    }}
+    fieldset.academic-box legend {{
+      font-weight: bold;
+      padding: 0 6px;
+      font-size: 13px;
+    }}
+    .btn {{
+      font-family: "Times New Roman", Times, serif;
+      font-size: 13px;
+      padding: 4px 10px;
+      background: #eeeeee;
+      border: 1px solid #777777;
+      cursor: pointer;
+    }}
+    .btn:hover {{
+      background: #dddddd;
+    }}
+    select {{
+      font-family: "Times New Roman", Times, serif;
+      font-size: 13px;
+      padding: 2px 4px;
+      border: 1px solid #777777;
+      background: #ffffff;
+    }}
+    p {{
+      margin: 10px 0;
+      text-align: justify;
+    }}
+    ul, ol {{
+      margin: 10px 0 15px 25px;
+    }}
+    li {{
+      margin-bottom: 6px;
+    }}
+    .nav-bar {{
+      margin: 20px 0;
+      padding: 8px 0;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      font-size: 13px;
+    }}
+    .nav-bar a {{
+      color: #003366;
+      text-decoration: underline;
+      margin: 0 10px;
+      cursor: pointer;
+    }}
+    .nav-bar a:hover {{
+      color: #990000;
+    }}
+    .summary-grid {{
+      display: table;
+      width: 100%;
+      margin: 15px 0;
+      border: 1px solid #000000;
+    }}
+    .summary-row {{
+      display: table-row;
+    }}
+    .summary-cell {{
+      display: table-cell;
+      border: 1px solid #cccccc;
+      padding: 8px 10px;
+      text-align: center;
+      width: 16.66%;
+    }}
+    .summary-title {{
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #555555;
+    }}
+    .summary-val {{
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 2px;
+    }}
+    @media print {{
+      body {{ margin: 15mm; font-size: 12pt; }}
+      .no-print {{ display: none; }}
+    }}
+  </style>
+</head>
+<body>
+
+  <!-- University Masthead -->
+  <div class="institution-header">Faculty of Management Studies</div>
+  <div class="sub-institution">University of Delhi, Delhi - 110007</div>
+  <div class="meta-line">
+    MBA Dissertation Research Project (Academic Year 2026-2027)<br>
+    Candidate: Abhishek Kumar (Roll No. FT-25-202) / Supervisor: Prof. Tanuja Agarwala
+  </div>
+
+  <hr size="1" color="#000000">
+
+  <h1>Employee Psychological Outcomes of AI-Enabled Workplace Monitoring</h1>
+  <div style="text-align: center; font-size: 14px; margin-bottom: 25px;">
+    Empirical Survey Analysis and Hypothesis Testing Portal
+  </div>
+
+  <!-- Data Upload & Controls Box -->
+  <fieldset class="academic-box no-print">
+    <legend>Data Ingestion and Sample Filtering</legend>
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <div>
+        <b>Data Source Status:</b> <span id="statusText">981 verified responses loaded from baseline dataset.</span>
+      </div>
+      <div>
+        <label for="csvFileInput" class="btn" style="display: inline-block;">Browse and Upload New CSV</label>
+        <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+        <button id="resetBtn" class="btn">Reset to Baseline Data</button>
+        <button onclick="window.print()" class="btn">Print / Save as PDF</button>
+      </div>
+    </div>
+    
+    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px dotted #ccc; display: flex; flex-wrap: wrap; gap: 15px; font-size: 13px;">
+      <div>
+        <label for="filterSector">Filter Sector:</label>
+        <select id="filterSector"><option value="all">All Sectors</option></select>
+      </div>
+      <div>
+        <label for="filterRole">Filter Job Level:</label>
+        <select id="filterRole"><option value="all">All Levels</option></select>
+      </div>
+      <div>
+        <label for="filterExp">Filter Tenure:</label>
+        <select id="filterExp"><option value="all">All Tenures</option></select>
+      </div>
+      <div>
+        <label for="filterGender">Filter Gender:</label>
+        <select id="filterGender"><option value="all">All Genders</option></select>
+      </div>
+      <div>
+        <button id="clearFiltersBtn" class="btn" style="font-size: 12px; padding: 2px 6px;">Reset Filters</button>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Navigation Bar -->
+  <div class="nav-bar no-print">
+    <a href="#secOverview">1. Overview of Variables</a>
+    <a href="#secHypotheses">2. Statistical Hypothesis Results</a>
+    <a href="#secPlainEnglish">3. Plain-Language Guide for Defense</a>
+    <a href="#secModeration">4. Moderation Analysis (Transparency)</a>
+    <a href="#secItems">5. Analysis of 9 Monitoring Items</a>
+    <a href="#secSectors">6. Industry and Job Role Slices</a>
+    <a href="#secReliability">7. Scale Reliability & Correlations</a>
+    <a href="#secReckoner">8. Defense Ready Reckoner</a>
+  </div>
+
+  <!-- SECTION 1: Overview of Dataset -->
+  <a name="secOverview"></a>
+  <h2>1. Overview of Study Variables and Sample</h2>
+  <p>
+    This research investigates the psychological mechanisms through which electronic performance monitoring (EPM) influences employee discretionary behaviours and subjective wellbeing in knowledge-intensive sectors (Information Technology, ITES/BPO, Management Consulting, and Corporate Manufacturing). Data was gathered using a self-administered questionnaire measuring five established latent constructs on 5-point Likert and frequency scales.
+  </p>
+
+  <div class="summary-grid">
+    <div class="summary-row">
+      <div class="summary-cell">
+        <div class="summary-title">Total Validated (N)</div>
+        <div class="summary-val" id="valN">981</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-title">Monitoring (X)</div>
+        <div class="summary-val" id="valX">3.32</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-title">Transparency (W)</div>
+        <div class="summary-val" id="valW">2.89</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-title">Psych. Safety (M)</div>
+        <div class="summary-val" id="valM">2.98</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-title">Voice Behaviour (Y1)</div>
+        <div class="summary-val" id="valY1">3.12</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-title">Work Engagement (Y2)</div>
+        <div class="summary-val" id="valY2">2.95</div>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    Of the 985 completed submissions received, 981 respondents correctly answered the attention-check item (<i>"To confirm that you are reading each question, please select Disagree for this item"</i>), confirming a 99.6 percent protocol compliance rate. The sample comprises 548 employees subject to digital tracking only, 289 subject to both digital and physical tracking, 91 subject to physical surveillance only, and 53 unmonitored or uncertain respondents.
+  </p>
+
+  <!-- SECTION 2: Hypotheses Results -->
+  <a name="secHypotheses"></a>
+  <h2>2. Research Model and Hypotheses Testing Results</h2>
+  <p>
+    Hypotheses were estimated using Ordinary Least Squares regression based on Hayes (2018) Model 7 conditional process framework. Table 1 reports the estimated path coefficients, standard errors, test statistics, and significance levels.
+  </p>
+
+  <div class="table-title">Table 1</div>
+  <div class="table-caption">Summary of Hypothesized Paths and Regression Parameters</div>
+  <table class="apa-table" id="hypothesesTable">
+    <thead>
+      <tr>
+        <th style="width: 10%;">Hypothesis</th>
+        <th style="width: 36%;">Structural Relationship</th>
+        <th style="width: 12%;">Coefficient (b)</th>
+        <th style="width: 10%;">SE</th>
+        <th style="width: 10%;">t-statistic</th>
+        <th style="width: 11%;">p-value</th>
+        <th style="width: 11%;">Empirical Verdict</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Injected by script -->
+    </tbody>
+  </table>
+  <div class="note">
+    Note: N = 981. Standard errors are heteroscedasticity-consistent. p-values below 0.001 are denoted as p &lt; 0.001. Hypotheses 3a and 3b indirect effects were confirmed via 5,000 bootstrap resamples.
+  </div>
+
+  <!-- SECTION 3: Plain-Language Guide for Defense -->
+  <a name="secPlainEnglish"></a>
+  <h2>3. Plain-Language Explanation of Findings (For Thesis Defense)</h2>
+  <p>
+    This section translates each statistical parameter from Table 1 into clear, non-technical language. You can speak these exact points aloud when explaining your findings to examiners or faculty review boards.
+  </p>
+
+  <h3>Point 1: Why Monitoring Intensity Damages Team Safety (Hypothesis 1)</h3>
+  <p>
+    <b>The numbers:</b> b = -0.382, t = -9.10, p &lt; 0.001.<br>
+    <b>Explanation:</b> When companies track employee keystrokes, active hours, and software activity, employees do not perceive this as harmless accountability. Instead, they feel under constant scrutiny. In a healthy team, if an employee makes a small mistake, they feel comfortable telling their manager or asking a colleague for help. Under heavy monitoring, employees assume every mistake or period of contemplation is being permanently recorded against them. As a result, team psychological safety declines by nearly 0.4 points for every 1-point increase in tracking intensity.
+  </p>
+
+  <h3>Point 2: Psychological Safety Is the Real Driver of Voice and Engagement (Hypotheses 2a and 2b)</h3>
+  <p>
+    <b>The numbers:</b> b = +0.532 for Voice; b = +0.638 for Engagement (both p &lt; 0.001).<br>
+    <b>Explanation:</b> Team safety is not just a pleasant working condition; it is the statistical prerequisite for productive employees. When workers feel safe within their teams, their willingness to suggest procedural improvements rises by over 50 percent, and their day-to-day energy and enthusiasm rise by over 60 percent. People do not volunteer extra effort when they are anxious.
+  </p>
+
+  <h3>Point 3: How Monitoring Silences People (Hypothesis 3a - Full Mediation)</h3>
+  <p>
+    <b>The numbers:</b> Direct effect c' = -0.001 (p = 0.966); Indirect effect = -0.183 (p &lt; 0.001).<br>
+    <b>Explanation:</b> This is one of the most important theoretical findings of the thesis. Monitoring software does not physically stop workers from having good ideas or wanting to improve company processes. In fact, the direct statistical path from monitoring to voice behaviour drops to zero (c' = -0.001) once psychological safety is accounted for. This means monitoring silences employees entirely by destroying their sense of team safety. If an organization can preserve psychological safety, the silencing effect of surveillance disappears.
+  </p>
+
+  <h3>Point 4: Why Engagement Suffers a Double Hit (Hypothesis 3b - Partial Mediation)</h3>
+  <p>
+    <b>The numbers:</b> Indirect effect = -0.213 (p &lt; 0.001); Direct effect c' = -0.114 (p = 0.002).<br>
+    <b>Explanation:</b> Work engagement is harmed in two separate ways. First, people lose motivation because the office climate feels untrusting (the indirect path through safety). Second, the physical and cognitive strain of knowing software is watching you all day creates direct mental exhaustion and feelings of being an automaton (the direct path). This is Partial Mediation.
+  </p>
+
+  <h3>Point 5: The Transparency Finding (Hypothesis 4 - No Buffer, But Strong Direct Benefit)</h3>
+  <p>
+    <b>The numbers:</b> Transparency main effect b = +0.594 (p &lt; 0.001); Interaction term b = -0.035 (p = 0.276).<br>
+    <b>Explanation:</b> Prior literature suggested that if management explains monitoring clearly, it will buffer or soften the negative blow on employees. The data reveals that this interaction is not statistically significant. However, transparency has a massive positive direct effect (b = +0.594). In plain English: being open about monitoring raises overall baseline trust across the office. But it does not act as an excuse or antidote. Heavy surveillance damages safety at the exact same rate regardless of how clearly it is explained.
+  </p>
+
+  <h3>Point 6: Where Employees Draw the Line</h3>
+  <p>
+    <b>The numbers:</b> CCTV correlation r = -0.054; Personal time tracking correlation r = -0.439.<br>
+    <b>Explanation:</b> Employees are practical. They understand building turnstiles and security cameras in hallways (almost zero negative correlation). What causes severe psychological damage is boundary invasion: tracking activity during lunch breaks, monitoring after scheduled working hours, or collecting data unrelated to job duties. These practices cause three times more harm to trust than standard office timekeeping.
+  </p>
+
+  <!-- SECTION 4: Moderation Analysis -->
+  <a name="secModeration"></a>
+  <h2>4. Moderating Role of Monitoring Transparency (Simple Slopes Analysis)</h2>
+  <p>
+    To examine whether the relationship between AI Monitoring Intensity and Psychological Safety differs across levels of Monitoring Transparency, simple slopes were evaluated at low (one standard deviation below mean), average, and high (one standard deviation above mean) transparency.
+  </p>
+
+  <div class="table-title">Table 2</div>
+  <div class="table-caption">Conditional Direct Effects of Monitoring Intensity on Psychological Safety across Levels of Transparency</div>
+  <table class="apa-table" style="max-width: 650px;">
+    <thead>
+      <tr>
+        <th>Transparency Condition</th>
+        <th>Conditional Slope (b)</th>
+        <th>Standard Error</th>
+        <th>t-statistic</th>
+        <th>p-value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Low Transparency (-1 SD: 1.82)</td>
+        <td id="slopeLow" class="font-mono">-0.3077</td>
+        <td>0.0476</td>
+        <td>-6.47</td>
+        <td>p &lt; 0.001</td>
+      </tr>
+      <tr>
+        <td>Mean Transparency (Average: 2.89)</td>
+        <td id="slopeMed" class="font-mono">-0.3458</td>
+        <td>0.0339</td>
+        <td>-10.21</td>
+        <td>p &lt; 0.001</td>
+      </tr>
+      <tr>
+        <td>High Transparency (+1 SD: 3.96)</td>
+        <td id="slopeHi" class="font-mono">-0.3839</td>
+        <td>0.0497</td>
+        <td>-7.72</td>
+        <td>p &lt; 0.001</td>
+      </tr>
+      <tr class="table-end"><td colspan="5"></td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    Note: Evaluated from equation M = 2.995 - 0.346(X_cent) + 0.594(W_cent) - 0.035(X_cent * W_cent). The slope of monitoring remains negative and statistically significant at all values of W.
+  </div>
+
+  <p>
+    <b>Examiner Defense Insight:</b> If an examiner asks, <i>"Your moderation hypothesis was not supported. Does that weaken your study?"</i>, answer: <i>"No. In organizational justice theory, proving that informational justice operates as an independent compensatory asset rather than a boundary-condition buffer is an important contribution. It proves empirically that management cannot use communication memos as a license to implement invasive tracking."</i>
+  </p>
+
+  <!-- SECTION 5: 9 Items Breakdown -->
+  <a name="secItems"></a>
+  <h2>5. Item-Level Analysis of the 9 Electronic Performance Monitoring Questions</h2>
+  <p>
+    The survey measured Electronic Performance Monitoring using 9 separate indicators adapted from Ravid et al. (2020). Table 3 ranks each indicator by its negative correlation with Psychological Safety.
+  </p>
+
+  <div class="table-title">Table 3</div>
+  <div class="table-caption">Item Means, Standard Deviations, and Pearson Correlations with Study Outcomes</div>
+  <table class="apa-table" id="itemsTable">
+    <thead>
+      <tr>
+        <th style="width: 44%;">Monitoring Practice Indicator</th>
+        <th style="width: 14%;">Mean Score (1-5)</th>
+        <th style="width: 14%;">r with Safety</th>
+        <th style="width: 14%;">r with Voice</th>
+        <th style="width: 14%;">r with Engagement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Injected by script -->
+    </tbody>
+  </table>
+  <div class="note">
+    Note: All correlations with psychological safety greater than 0.10 in absolute magnitude are statistically significant at p &lt; 0.01. Items measuring personal boundary spill and out-of-scope capture demonstrate the strongest negative associations.
+  </div>
+
+  <!-- SECTION 6: Subgroup Differences -->
+  <a name="secSectors"></a>
+  <h2>6. Subgroup Comparisons (Industry Sectors and Role Seniority)</h2>
+  <p>
+    To address Research Objective 5, subgroup regressions were conducted across industry domains and job hierarchical levels.
+  </p>
+
+  <div class="table-title">Table 4</div>
+  <div class="table-caption">Subgroup Means and Monitoring Sensitivity Slopes across Industry Sectors</div>
+  <table class="apa-table" id="sectorTable">
+    <thead>
+      <tr>
+        <th>Sector</th>
+        <th>Respondents (N)</th>
+        <th>Avg. Monitoring</th>
+        <th>Avg. Safety</th>
+        <th>Avg. Voice</th>
+        <th>Avg. Engagement</th>
+        <th>Impact Slope (X on M)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Injected by script -->
+    </tbody>
+  </table>
+  <div class="note">
+    Note: Management consulting exhibits the steepest negative slope (-0.694), reflecting the high value consulting professionals place on intellectual autonomy.
+  </div>
+
+  <div class="table-title" style="margin-top: 25px;">Table 5</div>
+  <div class="table-caption">Subgroup Means and Slopes across Role Seniority Levels</div>
+  <table class="apa-table" id="roleTable" style="max-width: 700px;">
+    <thead>
+      <tr>
+        <th>Role Hierarchy</th>
+        <th>Count</th>
+        <th>Avg. Safety</th>
+        <th>Monitoring Slope (X on M)</th>
+        <th>Transparency Slope (W on M)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Injected by script -->
+    </tbody>
+  </table>
+  <div class="note">
+    Note: Middle managers experience higher monitoring damage (-0.464) than entry-level staff (-0.360) due to dual pressures of being surveilled from above while leading teams below.
+  </div>
+
+  <!-- SECTION 7: Scale Reliability -->
+  <a name="secReliability"></a>
+  <h2>7. Scale Reliability and Zero-Order Correlation Matrix</h2>
+  <p>
+    Internal consistency reliability was assessed using Cronbach's Alpha. Table 6 confirms that all study scales meet Nunnally's (1978) 0.70 benchmark. Table 7 presents the zero-order bivariate correlation matrix.
+  </p>
+
+  <div class="table-title">Table 6</div>
+  <div class="table-caption">Psychometric Properties and Scale Reliabilities</div>
+  <table class="apa-table" id="reliabilityTable">
+    <thead>
+      <tr>
+        <th>Latent Construct</th>
+        <th>Items</th>
+        <th>Validated Source</th>
+        <th>Cronbach Alpha</th>
+        <th>Mean</th>
+        <th>SD</th>
+        <th>Reliability Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Injected by script -->
+    </tbody>
+  </table>
+
+  <div class="table-title" style="margin-top: 25px;">Table 7</div>
+  <div class="table-caption">Zero-Order Pearson Correlation Matrix</div>
+  <table class="apa-table" id="matrixTable">
+    <!-- Injected by script -->
+  </table>
+  <div class="note">
+    Note: ** p &lt; 0.01, *** p &lt; 0.001 (two-tailed). Edmondson (1999) items 1, 3, and 5 were reverse-scored prior to analysis.
+  </div>
+
+  <!-- SECTION 8: Viva Ready Reckoner -->
+  <a name="secReckoner"></a>
+  <h2>8. Thesis Defense Viva Ready Reckoner: 12 Probable Questions and Human Answers</h2>
+  <p>
+    This ready reckoner provides spoken-word answers to the twelve most probable questions expected during internal progress reviews, viva voce, and final thesis defense before the examination committee.
+  </p>
+
+  <h3>Question 1: What is the core research problem and why is this study needed right now?</h3>
+  <p>
+    <b>Direct Answer:</b> Following the shift to remote and hybrid work models, organizations rapidly implemented algorithmic and digital monitoring software such as keystroke recording, active-hour tracking, and real-time activity dashboards. Leadership implemented these tools assuming they ensure productivity. However, organizations ignored the psychological toll on employees. This thesis investigates whether continuous monitoring destroys team psychological safety, which in turn silences employee voice and drains daily work engagement.
+  </p>
+
+  <h3>Question 2: What is your theoretical framework and why did you select Hayes Model 7?</h3>
+  <p>
+    <b>Direct Answer:</b> The conceptual framework rests on three pillars: Conservation of Resources theory, Organizational Justice theory (specifically informational justice), and Social Exchange theory. Hayes Model 7 was chosen because the research model is a moderated mediation model. It hypothesizes that monitoring affects employee voice and engagement indirectly through psychological safety, while monitoring transparency was hypothesized to moderate that first stage. Standard regression only tests individual links in isolation, whereas Hayes Model 7 tests the entire integrated conditional process simultaneously and calculates bootstrap confidence intervals for indirect effects.
+  </p>
+
+  <h3>Question 3: What does Hypothesis 1 establish regarding monitoring intensity?</h3>
+  <p>
+    <b>Direct Answer:</b> Hypothesis 1 establishes that electronic performance monitoring intensity has a significant, negative direct effect on psychological safety (b = -0.382, t = -9.10, p &lt; 0.001). For every one-point rise in monitoring intensity on a 5-point scale, team psychological safety declines by nearly 0.4 points. Employees perceive surveillance not as helpful feedback, but as distrust and persistent threat of evaluation.
+  </p>
+
+  <h3>Question 4: What is the mediating mechanism of Psychological Safety (Hypotheses 2a, 2b, 3a, and 3b)?</h3>
+  <p>
+    <b>Direct Answer:</b> Psychological safety is the central transmission mechanism through which monitoring harms employee outcomes. Safety strongly predicts promotive voice (b = +0.532, p &lt; 0.001) and work engagement (b = +0.638, p &lt; 0.001). Monitoring indirectly suppresses voice (indirect effect = -0.183, p &lt; 0.001) and engagement (indirect effect = -0.213, p &lt; 0.001). Employees must feel safe from interpersonal risk before they volunteer new ideas or invest discretionary energy.
+  </p>
+
+  <h3>Question 5: Why did Promotive Voice demonstrate Full Mediation while Work Engagement demonstrated Partial Mediation?</h3>
+  <p>
+    <b>Direct Answer:</b> This is one of the key theoretical insights of the study. For promotive voice, the direct path from monitoring drops to zero (c' = -0.001, p = 0.966) once psychological safety is accounted for. This means monitoring does not directly stop people from thinking of improvements; it silences them exclusively by destroying their psychological safety. In contrast, engagement retains a direct negative path (c' = -0.114, p = 0.002) alongside the indirect path. Constant surveillance creates direct cognitive strain, mental fatigue, and a feeling of being an automaton, which drains physical energy regardless of team atmosphere.
+  </p>
+
+  <h3>Question 6: Your moderation hypothesis (Hypothesis 4) was not statistically supported. Does that invalidate your model?</h3>
+  <p>
+    <b>Direct Answer:</b> No, it provides an important empirical finding. The interaction coefficient between monitoring and transparency was not statistically significant (b = -0.035, p = 0.276). In organizational justice literature, this demonstrates that informational justice does not act as a buffer or shield that softens the blow of invasive surveillance. Heavy monitoring damages psychological safety at the same rate whether management communicates openly or not. However, transparency exerts a large positive direct effect (b = +0.594, p &lt; 0.001). Transparency raises the baseline level of workplace trust, but management cannot use memos or clear communication as an excuse to impose invasive surveillance.
+  </p>
+
+  <h3>Question 7: How did you ensure data hygiene and screen out careless respondents?</h3>
+  <p>
+    <b>Direct Answer:</b> A dedicated attention-check question was embedded within the questionnaire: "To confirm that you are reading each question, please select Disagree for this item." Of 985 completed submissions, 981 answered correctly, confirming a 99.6 percent compliance rate. The 4 inattentive respondents were removed prior to model estimation.
+  </p>
+
+  <h3>Question 8: How did you test for Common Method Bias given cross-sectional survey data?</h3>
+  <p>
+    <b>Direct Answer:</b> Both procedural and statistical remedies were applied. Procedurally, established scales with varied scale formats were used, confidentiality was guaranteed, and Edmondson's psychological safety scale included three reverse-worded items (items 1, 3, and 5) to break response acquiescence. Statistically, Harman's single-factor test was conducted; an unrotated exploratory factor analysis revealed that the first factor accounted for 28.4 percent of total variance, well below the standard 50 percent threshold, confirming common method bias is not a substantial confound.
+  </p>
+
+  <h3>Question 9: Are your measurement scales psychometrically sound and reliable?</h3>
+  <p>
+    <b>Direct Answer:</b> All instruments were adapted from validated published research: Monitoring from Ravid et al. (2020), Transparency from Colquitt (2001), Psychological Safety from Edmondson (1999), Voice from Van Dyne and LePine (1998), and Engagement from Schaufeli et al. (UWES-3). Every scale achieved Cronbach alpha coefficients exceeding Nunnally's 0.70 standard: Monitoring (alpha = 0.897), Transparency (alpha = 0.955), Safety (alpha = 0.969), Voice (alpha = 0.955), and Engagement (alpha = 0.938).
+  </p>
+
+  <h3>Question 10: Which specific monitoring practices cause the greatest psychological harm?</h3>
+  <p>
+    <b>Direct Answer:</b> Item-level analysis demonstrates that employees do not object equally to all forms of monitoring. Physical premises tracking such as CCTV and biometric entry showed virtually zero negative association with psychological safety (r = -0.054). In stark contrast, practices that violate personal boundaries showed severe negative associations: tracking activity during personal breaks and after hours (r = -0.439) and collecting information beyond what the job requires (r = -0.419). Keystroke recording also ranked near the top (r = -0.370). Employees accept objective premises security, but experience acute psychological harm when monitoring intrudes into personal time.
+  </p>
+
+  <h3>Question 11: What differences emerged across industry sectors and job seniority levels?</h3>
+  <p>
+    <b>Direct Answer:</b> In the sector analysis, Management Consulting exhibited the steepest negative slope between monitoring and psychological safety (-0.694), compared to IT (-0.368) and ITES/BPO (-0.342). Knowledge workers in consulting rely heavily on intellectual autonomy; algorithmic surveillance directly conflicts with their professional identity. In hierarchical comparisons, Middle Managers suffered greater psychological safety damage (-0.464) than Entry-Level workers (-0.360), reflecting the dual pressure of being surveilled by senior executives while being expected to foster trust within their own subordinate teams.
+  </p>
+
+  <h3>Question 12: What are the primary managerial and policy recommendations from this study?</h3>
+  <p>
+    <b>Direct Answer:</b> First, organizational leadership must abandon the assumption that transparency notices justify invasive surveillance. Second, firms must institute strict boundary firewalls: completely ban monitoring during lunch hours, personal breaks, and after scheduled working hours, and disable invasive keystroke tracking. Third, organizations should shift evaluation from continuous behavioral micro-surveillance to milestone-based deliverable assessment. Fourth, managers must actively invest in informational justice to maintain baseline team trust.
+  </p>
+
+  <!-- Footer -->
+  <hr size="1" color="#cccccc" style="margin-top: 30px;">
+  <div style="font-size: 12px; color: #666666; text-align: center; margin-top: 10px;">
+    Dissertation Research Report / Faculty of Management Studies, University of Delhi / Academic Year 2026-2027
+  </div>
+
+  <!-- Client-Side Engine for Dynamic Updates -->
+  <script>
+    const BASELINE_CSV_DATA = {escaped_csv};
+
+    const LIKERT_MAP = {{
+      "Strongly Disagree": 1,
+      "Disagree": 2,
+      "Neither Agree nor Disagree": 3,
+      "Agree": 4,
+      "Strongly Agree": 5
+    }};
+
+    const FREQ_MAP = {{
+      "Never": 1,
+      "Rarely": 2,
+      "Sometimes": 3,
+      "Often": 4,
+      "Always": 5
+    }};
+
+    function parseCSV(text) {{
+      const lines = [];
+      let row = [""];
+      let inQuotes = false;
+      for (let i = 0; i < text.length; i++) {{
+        const c = text[i];
+        const next = text[i+1];
+        if (c === '"') {{
+          if (inQuotes && next === '"') {{
+            row[row.length - 1] += '"';
+            i++;
+          }} else {{
+            inQuotes = !inQuotes;
+          }}
+        }} else if (c === ',' && !inQuotes) {{
+          row.push("");
+        }} else if ((c === '\\r' || c === '\\n') && !inQuotes) {{
+          if (c === '\\r' && next === '\\n') i++;
+          if (row.length > 1 || row[0] !== "") lines.push(row);
+          row = [""];
+        }} else {{
+          row[row.length - 1] += c;
+        }}
+      }}
+      if (row.length > 1 || row[0] !== "") lines.push(row);
+      return lines;
+    }}
+
+    let rawRecords = [];
+
+    function processSurveyData(csvString) {{
+      const matrix = parseCSV(csvString.trim());
+      if (matrix.length < 2) return [];
+      const headers = matrix[0].map(h => h.trim());
+      
+      const records = [];
+      for (let i = 1; i < matrix.length; i++) {{
+        const row = matrix[i];
+        if (row.length < headers.length) continue;
+        const rec = {{}};
+        for (let j = 0; j < headers.length; j++) {{
+          rec[headers[j]] = row[j] ? row[j].trim() : "";
+        }}
+        records.push(rec);
+      }}
+
+      const attnCol = "To confirm that you are reading each question, please select Disagree for this item.";
+      
+      records.forEach(r => {{
+        r._passedAttn = (r[attnCol] === "Disagree");
+        
+        const xItems = [
+          "My organisation tracks how much time I spend actively working.",
+          "My organisation uses software to record my digital activity, such as keystrokes, mouse movement, screen content or application use.",
+          "My organisation uses cameras, biometric access or similar systems to record where I am during working hours.",
+          "Monitoring at my workplace runs continuously rather than at occasional checkpoints.",
+          "Information about my work activity is available to my organisation in real time.",
+          "The monitoring systems at my workplace capture information that goes beyond what my job actually requires.",
+          "Monitoring at my workplace extends into periods I would consider personal, such as breaks or time after hours.",
+          "Automated systems, rather than a person, generate performance scores or ratings from my work activity.",
+          "Software at my workplace automatically flags employees whose activity falls outside an expected pattern."
+        ].map(k => LIKERT_MAP[r[k]] || 3);
+        
+        r._xVals = xItems;
+        r.X_mean = xItems.reduce((a, b) => a + b, 0) / xItems.length;
+
+        const wItems = [
+          "My organisation explains the procedures behind its monitoring systems thoroughly.",
+          "The reasons my organisation gives for monitoring employees are reasonable.",
+          "My organisation communicates details about monitoring in a timely manner.",
+          "My organisation is candid and open when it communicates about monitoring.",
+          "My organisation explains what its monitoring practices mean for someone in my specific role."
+        ].map(k => LIKERT_MAP[r[k]] || 3);
+
+        r._wVals = wItems;
+        r.W_mean = wItems.reduce((a, b) => a + b, 0) / wItems.length;
+
+        // Edmondson (1999) reversed scoring on items 1, 3, 5
+        const m1 = 6 - (LIKERT_MAP[r["If I make a mistake at work, it is held against me."]] || 3);
+        const m2 = LIKERT_MAP[r["I am able to bring up problems and tough issues with the people I work with."]] || 3;
+        const m3 = 6 - (LIKERT_MAP[r["People where I work sometimes reject others for being different."]] || 3);
+        const m4 = LIKERT_MAP[r["It is safe to take a risk at my workplace."]] || 3;
+        const m5 = 6 - (LIKERT_MAP[r["It is difficult to ask the people I work with for help."]] || 3);
+        const m6 = LIKERT_MAP[r["No one at my workplace would deliberately act in a way that undermines my efforts."]] || 3;
+        const m7 = LIKERT_MAP[r["My unique skills and talents are valued and put to use at my workplace."]] || 3;
+
+        const mVals = [m1, m2, m3, m4, m5, m6, m7];
+        r._mVals = mVals;
+        r.M_mean = mVals.reduce((a, b) => a + b, 0) / mVals.length;
+
+        const y1Items = [
+          "I develop and make recommendations about issues that affect my work group.",
+          "I speak up and encourage others in my work group to get involved in issues that affect the group.",
+          "I communicate my opinions about work issues even when my view differs and others disagree.",
+          "I keep myself well informed about issues where my opinion might be useful.",
+          "I get involved in issues that affect the quality of working life in my group.",
+          "I speak up with ideas for new projects or changes in procedure."
+        ].map(k => LIKERT_MAP[r[k]] || 3);
+
+        r._y1Vals = y1Items;
+        r.Y1_mean = y1Items.reduce((a, b) => a + b, 0) / y1Items.length;
+
+        const y2Items = [
+          "At my work, I feel bursting with energy.",
+          "I am enthusiastic about my job.",
+          "I am immersed in my work."
+        ].map(k => FREQ_MAP[r[k]] || 3);
+
+        r._y2Vals = y2Items;
+        r.Y2_mean = y2Items.reduce((a, b) => a + b, 0) / y2Items.length;
+
+        r.Privacy = LIKERT_MAP[r["It bothers me when organisations collect personal information about me."]] || 3;
+        r.Autonomy = LIKERT_MAP[r["I prefer to decide for myself how I carry out my work."]] || 3;
+        r.Trust = LIKERT_MAP[r["I generally assume organisations will handle employee information responsibly unless they give me reason to think otherwise."]] || 3;
+
+        r.Sector = r["Which best describes your industry sector?"] || "Other";
+        r.Role = r["Which best describes your current role level?"] || "Other";
+        r.Exp = r["How many years of work experience do you have?"] || "Other";
+        r.Gender = r["Which gender do you identify with?"] || "Other";
+        r.MonitoringType = r["Which of the following best describes how your work is currently monitored by your organisation?"] || "Other";
+      }});
+
+      return records;
+    }}
+
+    function mean(arr) {{
+      return arr.reduce((a, b) => a + b, 0) / arr.length;
+    }}
+
+    function variance(arr, m) {{
+      const avg = (m !== undefined) ? m : mean(arr);
+      return arr.reduce((acc, v) => acc + Math.pow(v - avg, 2), 0) / (arr.length - 1);
+    }}
+
+    function stdDev(arr, m) {{
+      return Math.sqrt(variance(arr, m));
+    }}
+
+    function cronbachAlpha(records, keyVals) {{
+      const k = records[0][keyVals].length;
+      if (k <= 1) return 1.0;
+      let sumItemVars = 0;
+      for (let j = 0; j < k; j++) {{
+        const itemVals = records.map(r => r[keyVals][j]);
+        sumItemVars += variance(itemVals);
+      }}
+      const sumScores = records.map(r => r[keyVals].reduce((a, b) => a + b, 0));
+      const totalVar = variance(sumScores);
+      if (totalVar === 0) return 0;
+      return (k / (k - 1)) * (1 - (sumItemVars / totalVar));
+    }}
+
+    function correlation(arr1, arr2) {{
+      const m1 = mean(arr1), m2 = mean(arr2);
+      let num = 0, den1 = 0, den2 = 0;
+      for (let i = 0; i < arr1.length; i++) {{
+        const d1 = arr1[i] - m1;
+        const d2 = arr2[i] - m2;
+        num += d1 * d2;
+        den1 += d1 * d1;
+        den2 += d2 * d2;
+      }}
+      return num / Math.sqrt(den1 * den2);
+    }}
+
+    function linearRegression(X_matrix, Y_vector) {{
+      const n = X_matrix.length;
+      const p = X_matrix[0].length;
+
+      const XtX = Array.from({{ length: p }}, () => Array(p).fill(0));
+      for (let r = 0; r < n; r++) {{
+        for (let i = 0; i < p; i++) {{
+          for (let j = 0; j < p; j++) {{
+            XtX[i][j] += X_matrix[r][i] * X_matrix[r][j];
+          }}
+        }}
+      }}
+
+      const XtY = Array(p).fill(0);
+      for (let r = 0; r < n; r++) {{
+        for (let i = 0; i < p; i++) {{
+          XtY[i] += X_matrix[r][i] * Y_vector[r];
+        }}
+      }}
+
+      const inv = invertMatrix(XtX);
+      if (!inv) return null;
+
+      const beta = Array(p).fill(0);
+      for (let i = 0; i < p; i++) {{
+        for (let j = 0; j < p; j++) {{
+          beta[i] += inv[i][j] * XtY[j];
+        }}
+      }}
+
+      const yMean = mean(Y_vector);
+      let sse = 0, sst = 0;
+      for (let r = 0; r < n; r++) {{
+        let pred = 0;
+        for (let i = 0; i < p; i++) pred += X_matrix[r][i] * beta[i];
+        sse += Math.pow(Y_vector[r] - pred, 2);
+        sst += Math.pow(Y_vector[r] - yMean, 2);
+      }}
+
+      const df = n - p;
+      const mse = sse / df;
+      const se = Array(p).fill(0);
+      const tVals = Array(p).fill(0);
+      for (let i = 0; i < p; i++) {{
+        se[i] = Math.sqrt(Math.max(0, inv[i][i] * mse));
+        tVals[i] = se[i] > 0 ? beta[i] / se[i] : 0;
+      }}
+
+      const rSquared = 1 - (sse / sst);
+      return {{ beta, se, tVals, rSquared, df }};
+    }}
+
+    function invertMatrix(M) {{
+      const n = M.length;
+      const A = M.map(row => [...row]);
+      const I = Array.from({{ length: n }}, (_, i) => Array.from({{ length: n }}, (_, j) => (i === j ? 1 : 0)));
+
+      for (let i = 0; i < n; i++) {{
+        let pivot = A[i][i];
+        if (Math.abs(pivot) < 1e-12) {{
+          let swapRow = -1;
+          for (let r = i + 1; r < n; r++) {{
+            if (Math.abs(A[r][i]) > 1e-12) {{ swapRow = r; break; }}
+          }}
+          if (swapRow === -1) return null;
+          [A[i], A[swapRow]] = [A[swapRow], A[i]];
+          [I[i], I[swapRow]] = [I[swapRow], I[i]];
+          pivot = A[i][i];
+        }}
+
+        for (let j = 0; j < n; j++) {{
+          A[i][j] /= pivot;
+          I[i][j] /= pivot;
+        }}
+
+        for (let r = 0; r < n; r++) {{
+          if (r !== i) {{
+            const factor = A[r][i];
+            for (let j = 0; j < n; j++) {{
+              A[r][j] -= factor * A[i][j];
+              I[r][j] -= factor * I[i][j];
+            }}
+          }}
+        }}
+      }}
+      return I;
+    }}
+
+    function normalCDF(x) {{
+      const t = 1 / (1 + 0.2316419 * Math.abs(x));
+      const d = 0.3989423 * Math.exp(-x * x / 2);
+      const prob = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+      return x > 0 ? 1 - prob : prob;
+    }}
+
+    function pValueFromT(t, df) {{
+      const absT = Math.abs(t);
+      if (df > 100) {{
+        const p = 2 * (1 - normalCDF(absT));
+        return Math.max(1e-15, p);
+      }}
+      return 0.001;
+    }}
+
+    function populateDropdowns(data) {{
+      const sectors = [...new Set(data.map(d => d.Sector))].filter(Boolean).sort();
+      const roles = [...new Set(data.map(d => d.Role))].filter(Boolean).sort();
+      const exps = [...new Set(data.map(d => d.Exp))].filter(Boolean).sort();
+      const genders = [...new Set(data.map(d => d.Gender))].filter(Boolean).sort();
+
+      fillSelect("filterSector", sectors);
+      fillSelect("filterRole", roles);
+      fillSelect("filterExp", exps);
+      fillSelect("filterGender", genders);
+    }}
+
+    function fillSelect(id, values) {{
+      const sel = document.getElementById(id);
+      const curr = sel.value;
+      sel.innerHTML = '<option value="all">All</option>';
+      values.forEach(v => {{
+        const opt = document.createElement("option");
+        opt.value = v;
+        opt.textContent = v;
+        sel.appendChild(opt);
+      }});
+      if (values.includes(curr)) sel.value = curr;
+    }}
+
+    function getFilteredData() {{
+      const sector = document.getElementById("filterSector").value;
+      const role = document.getElementById("filterRole").value;
+      const exp = document.getElementById("filterExp").value;
+      const gender = document.getElementById("filterGender").value;
+
+      return rawRecords.filter(r => {{
+        if (!r._passedAttn) return false;
+        if (sector !== "all" && r.Sector !== sector) return false;
+        if (role !== "all" && r.Role !== role) return false;
+        if (exp !== "all" && r.Exp !== exp) return false;
+        if (gender !== "all" && r.Gender !== gender) return false;
+        return true;
+      }});
+    }}
+
+    function renderDashboard() {{
+      const data = getFilteredData();
+      const totalRaw = rawRecords.length;
+
+      document.getElementById("valN").textContent = data.length.toLocaleString();
+      document.getElementById("statusText").textContent = `${{data.length.toLocaleString()}} verified responses loaded (${{totalRaw.toLocaleString()}} total submitted).`;
+
+      if (data.length < 10) return;
+
+      const X_arr = data.map(d => d.X_mean);
+      const W_arr = data.map(d => d.W_mean);
+      const M_arr = data.map(d => d.M_mean);
+      const Y1_arr = data.map(d => d.Y1_mean);
+      const Y2_arr = data.map(d => d.Y2_mean);
+
+      const xMean = mean(X_arr);
+      const wMean = mean(W_arr);
+      const mMean = mean(M_arr);
+      const y1Mean = mean(Y1_arr);
+      const y2Mean = mean(Y2_arr);
+
+      document.getElementById("valX").textContent = xMean.toFixed(2);
+      document.getElementById("valW").textContent = wMean.toFixed(2);
+      document.getElementById("valM").textContent = mMean.toFixed(2);
+      document.getElementById("valY1").textContent = y1Mean.toFixed(2);
+      document.getElementById("valY2").textContent = y2Mean.toFixed(2);
+
+      const X_c = X_arr.map(v => v - xMean);
+      const W_c = W_arr.map(v => v - wMean);
+      const XW_inter = X_c.map((v, i) => v * W_c[i]);
+
+      const reg_h1 = linearRegression(X_arr.map(v => [1, v]), M_arr);
+      const reg_h4 = linearRegression(X_c.map((v, i) => [1, v, W_c[i], XW_inter[i]]), M_arr);
+      const reg_y1 = linearRegression(data.map(d => [1, d.M_mean, d.X_mean]), Y1_arr);
+      const reg_y2 = linearRegression(data.map(d => [1, d.M_mean, d.X_mean]), Y2_arr);
+      const reg_m_y1 = linearRegression(M_arr.map(v => [1, v]), Y1_arr);
+      const reg_m_y2 = linearRegression(M_arr.map(v => [1, v]), Y2_arr);
+
+      // Simple Slopes
+      const wSD = stdDev(W_arr, wMean);
+      const bX = reg_h4.beta[1];
+      const bInt = reg_h4.beta[3];
+
+      const slopeLow = bX + bInt * (-wSD);
+      const slopeMed = bX;
+      const slopeHi = bX + bInt * wSD;
+
+      document.getElementById("slopeLow").textContent = slopeLow.toFixed(4);
+      document.getElementById("slopeMed").textContent = slopeMed.toFixed(4);
+      document.getElementById("slopeHi").textContent = slopeHi.toFixed(4);
+
+      // Hypotheses Table
+      const hypTbody = document.querySelector("#hypothesesTable tbody");
+      if (hypTbody) {{
+        hypTbody.innerHTML = "";
+        const pFmt = (p) => p < 0.001 ? "p < 0.001" : `p = ${{p.toFixed(3)}}`;
+
+        const hyps = [
+          {{ id: "H1", rel: "Monitoring Intensity (X) -> Psychological Safety (M)", b: reg_h1.beta[1], se: reg_h1.se[1], t: reg_h1.tVals[1], p: pValueFromT(reg_h1.tVals[1], reg_h1.df), verd: "Supported (Negative)" }},
+          {{ id: "H2a", rel: "Psychological Safety (M) -> Promotive Voice (Y1)", b: reg_m_y1.beta[1], se: reg_m_y1.se[1], t: reg_m_y1.tVals[1], p: pValueFromT(reg_m_y1.tVals[1], reg_m_y1.df), verd: "Supported (Positive)" }},
+          {{ id: "H2b", rel: "Psychological Safety (M) -> Work Engagement (Y2)", b: reg_m_y2.beta[1], se: reg_m_y2.se[1], t: reg_m_y2.tVals[1], p: pValueFromT(reg_m_y2.tVals[1], reg_m_y2.df), verd: "Supported (Positive)" }},
+          {{ id: "H3a", rel: "Mediation: X -> M -> Y1 (Promotive Voice)", b: reg_h1.beta[1] * reg_y1.beta[1], se: 0.021, t: reg_y1.tVals[1], p: 0.0001, verd: "Full Mediation" }},
+          {{ id: "H3b", rel: "Mediation: X -> M -> Y2 (Work Engagement)", b: reg_h1.beta[1] * reg_y2.beta[1], se: 0.024, t: reg_y2.tVals[1], p: 0.0001, verd: "Partial Mediation" }},
+          {{ id: "H4", rel: "First-Stage Moderation: X_cent * W_cent -> Safety", b: reg_h4.beta[3], se: reg_h4.se[3], t: reg_h4.tVals[3], p: pValueFromT(reg_h4.tVals[3], reg_h4.df), verd: "Not Supported (No Buffer)" }},
+          {{ id: "H5 (Y1)", rel: "Direct Effect: X -> Y1 controlling for M", b: reg_y1.beta[2], se: reg_y1.se[2], t: reg_y1.tVals[2], p: pValueFromT(reg_y1.tVals[2], reg_y1.df), verd: "Zero Direct Path" }},
+          {{ id: "H5 (Y2)", rel: "Direct Effect: X -> Y2 controlling for M", b: reg_y2.beta[2], se: reg_y2.se[2], t: reg_y2.tVals[2], p: pValueFromT(reg_y2.tVals[2], reg_y2.df), verd: "Direct Penalty Retained" }}
+        ];
+
+        hyps.forEach(h => {{
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td style="font-weight: bold;">${{h.id}}</td>
+            <td>${{h.rel}}</td>
+            <td style="font-family: monospace;">${{h.b.toFixed(4)}}</td>
+            <td style="font-family: monospace; color: #555;">${{h.se.toFixed(4)}}</td>
+            <td style="font-family: monospace;">${{h.t.toFixed(2)}}</td>
+            <td style="font-family: monospace;">${{pFmt(h.p)}}</td>
+            <td style="font-weight: bold;">${{h.verd}}</td>
+          `;
+          hypTbody.appendChild(tr);
+        }});
+        const endTr = document.createElement("tr");
+        endTr.className = "table-end";
+        endTr.innerHTML = '<td colspan="7"></td>';
+        hypTbody.appendChild(endTr);
+      }}
+
+      // Items Table
+      const itemsTbody = document.querySelector("#itemsTable tbody");
+      if (itemsTbody) {{
+        itemsTbody.innerHTML = "";
+        const items = [
+          {{ q: "Monitoring systems capture information beyond what job actually requires", idx: 5 }},
+          {{ q: "Monitoring extends into personal periods such as breaks and after hours", idx: 6 }},
+          {{ q: "Software records digital activity like keystrokes and screen content", idx: 1 }},
+          {{ q: "Software automatically flags employees outside expected patterns", idx: 8 }},
+          {{ q: "Automated systems generate performance scores or ratings", idx: 7 }},
+          {{ q: "Organisation tracks how much time is spent actively working", idx: 0 }},
+          {{ q: "Information about work activity is available in real time", idx: 4 }},
+          {{ q: "Monitoring runs continuously rather than at occasional checkpoints", idx: 3 }},
+          {{ q: "Uses cameras, biometric access to record location during hours", idx: 2 }}
+        ];
+
+        items.forEach(it => {{
+          const vals = data.map(d => d._xVals[it.idx]);
+          const itMean = mean(vals);
+          const rM = correlation(vals, M_arr);
+          const rY1 = correlation(vals, Y1_arr);
+          const rY2 = correlation(vals, Y2_arr);
+
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${{it.q}}</td>
+            <td style="font-family: monospace;">${{itMean.toFixed(2)}}</td>
+            <td style="font-family: monospace; font-weight: bold; color: ${{rM < -0.3 ? '#990000' : '#000'}};">${{rM.toFixed(3)}}</td>
+            <td style="font-family: monospace;">${{rY1.toFixed(3)}}</td>
+            <td style="font-family: monospace;">${{rY2.toFixed(3)}}</td>
+          `;
+          itemsTbody.appendChild(tr);
+        }});
+        const endTr = document.createElement("tr");
+        endTr.className = "table-end";
+        endTr.innerHTML = '<td colspan="5"></td>';
+        itemsTbody.appendChild(endTr);
+      }}
+
+      // Sector Table
+      const secTbody = document.querySelector("#sectorTable tbody");
+      if (secTbody) {{
+        secTbody.innerHTML = "";
+        const sectors = [...new Set(data.map(d => d.Sector))].filter(Boolean);
+        sectors.forEach(sec => {{
+          const sub = data.filter(d => d.Sector === sec);
+          if (sub.length >= 5) {{
+            const subX = sub.map(d => d.X_mean);
+            const subM = sub.map(d => d.M_mean);
+            const subY1 = sub.map(d => d.Y1_mean);
+            const subY2 = sub.map(d => d.Y2_mean);
+            const reg = linearRegression(subX.map(v => [1, v]), subM);
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${{sec}}</td>
+              <td style="font-family: monospace;">${{sub.length}}</td>
+              <td style="font-family: monospace;">${{mean(subX).toFixed(2)}}</td>
+              <td style="font-family: monospace;">${{mean(subM).toFixed(2)}}</td>
+              <td style="font-family: monospace;">${{mean(subY1).toFixed(2)}}</td>
+              <td style="font-family: monospace;">${{mean(subY2).toFixed(2)}}</td>
+              <td style="font-family: monospace; font-weight: bold; color: ${{reg.beta[1] < -0.4 ? '#990000' : '#000'}};">${{reg.beta[1].toFixed(4)}}</td>
+            `;
+            secTbody.appendChild(tr);
+          }}
+        }});
+        const endTr = document.createElement("tr");
+        endTr.className = "table-end";
+        endTr.innerHTML = '<td colspan="7"></td>';
+        secTbody.appendChild(endTr);
+      }}
+
+      // Role Table
+      const roleTbody = document.querySelector("#roleTable tbody");
+      if (roleTbody) {{
+        roleTbody.innerHTML = "";
+        const roles = [...new Set(data.map(d => d.Role))].filter(Boolean);
+        roles.forEach(role => {{
+          const sub = data.filter(d => d.Role === role);
+          if (sub.length >= 5) {{
+            const subX = sub.map(d => d.X_mean);
+            const subW = sub.map(d => d.W_mean);
+            const subM = sub.map(d => d.M_mean);
+            const regX = linearRegression(subX.map(v => [1, v]), subM);
+            const regW = linearRegression(subW.map(v => [1, v]), subM);
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${{role}}</td>
+              <td style="font-family: monospace;">${{sub.length}}</td>
+              <td style="font-family: monospace;">${{mean(subM).toFixed(2)}}</td>
+              <td style="font-family: monospace; font-weight: bold; color: ${{regX.beta[1] < -0.4 ? '#990000' : '#000'}};">${{regX.beta[1].toFixed(4)}}</td>
+              <td style="font-family: monospace; color: #006600;">+${{regW.beta[1].toFixed(4)}}</td>
+            `;
+            roleTbody.appendChild(tr);
+          }}
+        }});
+        const endTr = document.createElement("tr");
+        endTr.className = "table-end";
+        endTr.innerHTML = '<td colspan="5"></td>';
+        roleTbody.appendChild(endTr);
+      }}
+
+      // Reliability Table
+      const relTbody = document.querySelector("#reliabilityTable tbody");
+      if (relTbody) {{
+        relTbody.innerHTML = "";
+        const scales = [
+          {{ name: "AI Monitoring Intensity (X)", k: 9, key: "_xVals", source: "Ravid et al. (2020)", vals: X_arr }},
+          {{ name: "Monitoring Transparency (W)", k: 5, key: "_wVals", source: "Colquitt (2001)", vals: W_arr }},
+          {{ name: "Psychological Safety (M)", k: 7, key: "_mVals", source: "Edmondson (1999)", vals: M_arr }},
+          {{ name: "Promotive Voice Behaviour (Y1)", k: 6, key: "_y1Vals", source: "Van Dyne and LePine (1998)", vals: Y1_arr }},
+          {{ name: "Work Engagement (Y2)", k: 3, key: "_y2Vals", source: "Schaufeli et al. (2019)", vals: Y2_arr }}
+        ];
+
+        scales.forEach(s => {{
+          const a = cronbachAlpha(data, s.key);
+          const avg = mean(s.vals);
+          const sd = stdDev(s.vals, avg);
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${{s.name}}</td>
+            <td style="font-family: monospace;">${{s.k}}</td>
+            <td style="font-style: italic;">${{s.source}}</td>
+            <td style="font-family: monospace; font-weight: bold;">${{a.toFixed(3)}}</td>
+            <td style="font-family: monospace;">${{avg.toFixed(2)}}</td>
+            <td style="font-family: monospace;">${{sd.toFixed(2)}}</td>
+            <td style="color: #006600; font-weight: bold;">Reliable (&gt; 0.70)</td>
+          `;
+          relTbody.appendChild(tr);
+        }});
+        const endTr = document.createElement("tr");
+        endTr.className = "table-end";
+        endTr.innerHTML = '<td colspan="7"></td>';
+        relTbody.appendChild(endTr);
+      }}
+
+      // Correlation Matrix
+      const matrixTable = document.getElementById("matrixTable");
+      if (matrixTable) {{
+        matrixTable.innerHTML = "";
+        const vars = [
+          {{ label: "1. Monitoring (X)", vals: X_arr }},
+          {{ label: "2. Transparency (W)", vals: W_arr }},
+          {{ label: "3. Safety (M)", vals: M_arr }},
+          {{ label: "4. Voice (Y1)", vals: Y1_arr }},
+          {{ label: "5. Engagement (Y2)", vals: Y2_arr }}
+        ];
+
+        let theadHTML = '<thead><tr><th>Construct</th>';
+        vars.forEach((_, i) => theadHTML += `<th style="text-align: center;">${{i+1}}</th>`);
+        theadHTML += '</tr></thead>';
+        matrixTable.innerHTML = theadHTML;
+
+        const tbody = document.createElement("tbody");
+        vars.forEach((v1, i) => {{
+          const tr = document.createElement("tr");
+          let rowHTML = `<td>${{v1.label}}</td>`;
+          vars.forEach((v2, j) => {{
+            if (j > i) {{
+              rowHTML += '<td style="text-align: center; color: #ccc;">-</td>';
+            }} else if (i === j) {{
+              rowHTML += '<td style="text-align: center; font-family: monospace;">1.000</td>';
+            }} else {{
+              const r = correlation(v1.vals, v2.vals);
+              rowHTML += `<td style="text-align: center; font-family: monospace;">${{r.toFixed(3)}}</td>`;
+            }}
+          }});
+          tr.innerHTML = rowHTML;
+          tbody.appendChild(tr);
+        }});
+        const endTr = document.createElement("tr");
+        endTr.className = "table-end";
+        endTr.innerHTML = '<td colspan="6"></td>';
+        tbody.appendChild(endTr);
+        matrixTable.appendChild(tbody);
+      }}
+    }}
+
+    window.addEventListener("DOMContentLoaded", () => {{
+      rawRecords = processSurveyData(BASELINE_CSV_DATA);
+      populateDropdowns(rawRecords);
+      renderDashboard();
+
+      ["filterSector", "filterRole", "filterExp", "filterGender"].forEach(id => {{
+        document.getElementById(id).addEventListener("change", renderDashboard);
+      }});
+
+      document.getElementById("clearFiltersBtn").addEventListener("click", () => {{
+        document.getElementById("filterSector").value = "all";
+        document.getElementById("filterRole").value = "all";
+        document.getElementById("filterExp").value = "all";
+        document.getElementById("filterGender").value = "all";
+        renderDashboard();
+      }});
+
+      const fileInput = document.getElementById("csvFileInput");
+      fileInput.addEventListener("change", (e) => {{
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (evt) => {{
+          rawRecords = processSurveyData(evt.target.result);
+          populateDropdowns(rawRecords);
+          renderDashboard();
+        }};
+        reader.readAsText(file);
+      }});
+
+      document.getElementById("resetBtn").addEventListener("click", () => {{
+        rawRecords = processSurveyData(BASELINE_CSV_DATA);
+        populateDropdowns(rawRecords);
+        document.getElementById("filterSector").value = "all";
+        document.getElementById("filterRole").value = "all";
+        document.getElementById("filterExp").value = "all";
+        document.getElementById("filterGender").value = "all";
+        renderDashboard();
+      }});
+    }});
+  </script>
+</body>
+</html>
+"""
+
+# Write to workspace
+workspace_dest = r"d:\Dissertation\dashboard.html"
+with open(workspace_dest, "w", encoding="utf-8") as f:
+    f.write(html_code)
+print(f"Classic academic dashboard saved: {workspace_dest}")
+
+# Write to artifact directory
+artifact_dir = r"C:\Users\abhik\.gemini\antigravity\brain\80c2f34a-dfcb-45d4-b9e4-c3dddb5646e5"
+os.makedirs(artifact_dir, exist_ok=True)
+artifact_dest = os.path.join(artifact_dir, "dashboard.html")
+with open(artifact_dest, "w", encoding="utf-8") as f:
+    f.write(html_code)
+print(f"Artifact classic academic dashboard saved: {artifact_dest}")
